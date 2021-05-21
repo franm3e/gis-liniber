@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Titulo</title>
+
+    <script src="{% static 'js/animales.js' %}"></script>
+    {% include "imports.html" %}
+</head>
+<body>
+    {% include "header.html" %}
+    <div class="container-fluid">
+        <div class="row m-4">
+            <div class="col">
+                <table class="table caption-top table-bordered" id="tabla_animales">
+                    <caption>Ejemplares dados de alta en el sistema</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Organismo</th>
+                            <th scope="col">Instalación</th>
+                            <th scope="col">Frecuencia</th>
+                            <th scope="col">Teléfono</th>
+                            <th scope="col">Activo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    {% include "footer.html" %}
+</body>
+</html>

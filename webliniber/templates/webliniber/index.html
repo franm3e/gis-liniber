@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Titulo</title>
+
+    <script src="{% static 'js/index.js' %}"></script>
+    {% include "imports.html" %}
+</head>
+<body>
+    {% include "header.html" %}
+    <div class="container-fluid">
+        <div class="row m-4">
+            <div class="col">
+                <div id="map_canvas" style="height: 60vh;"></div>
+            </div>
+        </div>
+        <div class="row m-4">
+            <div class="col-auto">
+                <div class="btn-group">
+                    <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Areas
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row m-4">
+            <div class="col">
+                <input id="animal_search" class="form-control" type="text" placeholder="Buscar animal...">
+            </div>
+        </div>
+    </div>
+    {% include "footer.html" %}
+</body>
+</html>

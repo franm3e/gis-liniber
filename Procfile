@@ -1,0 +1,1 @@
+web: gunicorn gisliniber.wsgi --log-file -
