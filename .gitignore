@@ -2,6 +2,6 @@
 .idea/
 venv/
 
-gisliniber/settings_debug.py
 
 
+.env

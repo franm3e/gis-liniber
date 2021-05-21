@@ -1,16 +1,16 @@
 
+import environ
 import os
 from decouple import config
 
-if config('DJANGO_DEBUG', default=True, cast=bool):
-    from .settings_debug import DEBUG_DATABASES
-    from .settings_debug import DEBUG_SECRET_KEY
+env = environ.Env()
+environ.Env.read_env()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 DEBUG = config('DJANGO_DEBUG', default=True, cast=bool)
 
-SECRET_KEY = config('SECRET_KEY', default=DEBUG_SECRET_KEY)
+SECRET_KEY = env('SECRET_KEY'),
 
 ALLOWED_HOSTS = ['*']
 
@@ -63,11 +63,11 @@ WSGI_APPLICATION = 'gisliniber.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('DATABASE_NAME', default=DEBUG_DATABASES['default']['NAME']),
-        'USER': config('DATABASE_USER', default=DEBUG_DATABASES['default']['USER']),
-        'PASSWORD': config('DATABASE_PASSWORD', default=DEBUG_DATABASES['default']['PASSWORD']),
-        'HOST': config('DATABASE_HOST', default=DEBUG_DATABASES['default']['HOST']),
-        'PORT': config('DATABASE_PORT', default=DEBUG_DATABASES['default']['PORT']),
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': env('DATABASE_HOST'),
+        'PORT': env('DATABASE_PORT'),
     }
 }
 
@@ -112,4 +112,3 @@ STATIC_URL = '/webliniber/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'webliniber/static'),
 )
-
