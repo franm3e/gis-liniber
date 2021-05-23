@@ -5,3 +5,9 @@ venv/
 
 
 .env
+
+cron_scripts/__pycache__/
+
+gisliniber/__pycache__/
+
+webliniber/__pycache__/

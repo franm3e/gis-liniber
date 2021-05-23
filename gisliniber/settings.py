@@ -3,10 +3,11 @@ import environ
 import os
 from decouple import config
 
-env = environ.Env()
-environ.Env.read_env()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+env = environ.Env()
+environ.Env.read_env(env_file=os.path.join(BASE_DIR, '.env'))
 
 DEBUG = config('DJANGO_DEBUG', default=True, cast=bool)
 
@@ -18,6 +19,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'django.contrib.gis',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
