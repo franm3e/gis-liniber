@@ -11,6 +11,20 @@ class Animal:
         self.area = area
 
 
+class AnimalView:
+    def __init__(self, id, organismo, instalacion, nombre, frecuencia, telefono, activo, area, fecha_nacimiento):
+        self.id = id
+        self.organismo = organismo
+        self.instalacion = instalacion
+        self.nombre = nombre
+        self.frecuencia = frecuencia
+        self.telefono = telefono
+        self.activo = activo
+        self.area = area
+        self.fecha_nacimiento = fecha_nacimiento
+
+
+
 class AreaDistribucion:
     def __init__(self, id, geom, nombre, f2002, f2003, f2004, f2005, f2006, f2007, f2008, f2009, f2010, f2011, f2012, f2013, f2014, f2015, f2016, f2017, f2018, shape_area, shape_length, anio):
         self.id = id

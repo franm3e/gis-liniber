@@ -12,8 +12,9 @@ from cron_scripts.models import *
 # CONSULTAS
 SQL_GET_ANIMALES = 'SELECT * FROM "Animal" WHERE "Activo" = True'
 SQL_GET_POSICIONES = 'SELECT TOP 1 * FROM "Animal" WHERE '
-SQL_GET_NACIMIENTOS = 'SELECT * FROM "Animal" WHERE "Fecha_Nacimiento" IS NULL'
+SQL_GET_NACIMIENTOS = 'SELECT * FROM "v_Animal" WHERE "FechaNacimiento" IS NULL'
 SQL_GET_AREA_NACIMIENTO = 'SELECT * FROM "Area_Distribucion" WHERE "Id" = {animal_area_id}'
+SQL_INSERT_NACIMIENTO = 'INSERT INTO "Posicion"("Fecha", "Latitud", "Longitud", "geom", "Animal") VALUES (%(fecha)s, %(latitud)s, %(longitud)s, %(geom)s::geometry, %(animal)s) RETURNING "Id";'
 
 # OBJETOS GLOBALES
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -49,7 +50,7 @@ def gestionar_nacimientos():
     with DATABASE.cursor() as cursor:
         cursor.execute(SQL_GET_NACIMIENTOS)
         for row in cursor:
-            animal = Animal(*row)
+            animal = AnimalView(*row)
             cursor.execute(SQL_GET_AREA_NACIMIENTO.format(animal_area_id=animal.area))
 
             insert_cursor = DATABASE.cursor()
@@ -58,7 +59,7 @@ def gestionar_nacimientos():
                 punto_nacimiento = utils.get_random_point_in_polygon(shapely.wkb.loads(area_distribucion.geom, hex=True))
 
                 insert_cursor.execute(
-                    'INSERT INTO "Posicion"("Fecha", "Latitud", "Longitud", "geom", "Animal") VALUES (%(fecha)s, %(latitud)s, %(longitud)s, %(geom)s::geometry, %(animal)s) RETURNING "Id";',
+                    SQL_INSERT_NACIMIENTO,
                     {'geom': punto_nacimiento.wkb_hex, 'fecha': str(datetime.datetime.now()), 'latitud': str(punto_nacimiento.y), 'longitud': str(punto_nacimiento.y), 'animal': str(animal.id)}
                 )
 

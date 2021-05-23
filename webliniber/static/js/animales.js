@@ -23,6 +23,7 @@ function add_animal_to_table(animal_data, index) {
         '<tr>' +
         '<th>' + index + '</th>' +
         '<td>' + ((animal_data.nombre) ? animal_data.nombre : '') + '</td>' +
+        '<td>' + ((animal_data.fecha_nacimiento) ? animal_data.fecha_nacimiento : '') + '</td>' +
         '<td>' + ((animal_data.organismo) ? animal_data.organismo : '') + '</td>' +
         '<td>' + ((animal_data.instalacion) ? animal_data.instalacion : '') + '</td>' +
         '<td>' + ((animal_data.frecuencia) ? animal_data.frecuencia : '') + '</td>' +

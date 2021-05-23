@@ -39,11 +39,26 @@ class Animal(models.Model):
     frecuencia = models.TextField(db_column='Frecuencia', blank=True, null=True)
     telefono = models.TextField(db_column='Telefono', blank=True, null=True)
     activo = models.BooleanField(db_column='Activo')
-    fecha_nacimiento = models.DateTimeField(db_column='Fecha_Nacimiento', blank=True, null=True)
     area = models.ForeignKey(AreaDistribucion, models.DO_NOTHING, db_column='Area')
 
     class Meta:
         db_table = 'Animal'
+
+
+class AnimalView(models.Model):
+    id = models.AutoField(db_column='Id', primary_key=True)
+    organismo = models.TextField(db_column='Organismo', blank=True, null=True)
+    instalacion = models.TextField(db_column='Instalacion', blank=True, null=True)
+    nombre = models.TextField(db_column='Nombre', blank=True, null=True)
+    frecuencia = models.TextField(db_column='Frecuencia', blank=True, null=True)
+    telefono = models.TextField(db_column='Telefono', blank=True, null=True)
+    activo = models.BooleanField(db_column='Activo')
+    area = models.ForeignKey(AreaDistribucion, models.DO_NOTHING, db_column='Area')
+    fecha_nacimiento = models.DateTimeField(db_column='FechaNacimiento', blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'v_Animal'
 
 
 class Posicion(models.Model):
