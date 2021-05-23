@@ -15,6 +15,7 @@ SECRET_KEY = env('SECRET_KEY'),
 
 ALLOWED_HOSTS = ['*']
 
+GDAL_LIBRARY_PATH = os.getenv('GDAL_LIBRARY_PATH')
 
 # Application definition
 
